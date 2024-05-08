@@ -5,3 +5,5 @@
 
 # ignore data too large
 data/aa_exploration_data/constraints/*.csv
+data/aa_exploration_data/constraints/USFWS-Region-7-Land-Status.gdb
+data/aa_exploration_data/constraints/2023GDB_statewide
