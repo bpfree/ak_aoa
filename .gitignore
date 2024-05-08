@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+# ignore data too large
+data/aa_exploration_data/constraints/*.csv
