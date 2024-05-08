@@ -50,7 +50,7 @@ pacman::p_load(docxtractr,
 download_dir <- "~/downloads"
 
 ## output directory
-data_dir <- "data/aa_exploration_data"
+data_dir <- "data/aa_exploration_data/constraints"
 
 #####################################
 #####################################
