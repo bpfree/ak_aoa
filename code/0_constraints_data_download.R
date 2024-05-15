@@ -1,6 +1,6 @@
-###################################################
-### 0. Download Data -- industry and navigation ###
-###################################################
+#######################################
+### 0. Download Data -- constraints ###
+#######################################
 
 # clear environment
 rm(list = ls())
@@ -69,59 +69,9 @@ data_download_function <- function(download_list, data_dir){
                   mode="wb")
   }
   
-  # unzip and prepare data hosted on AXDS's Audubon server
-  if (grepl("audubon", file)){
-    
-    # grab unique file name portion
-    new_dir_name <- unlist(strsplit(file, split=':', fixed=TRUE))[2]
-    
-    # create new directory for data
-    new_dir <- file.path(data_dir, new_dir_name)
-    
-    # unzip the file
-    unzip(zipfile = file.path(data_dir, file),
-          # export file to the new data directory
-          exdir = new_dir)
-    # remove original zipped file
-    file.remove(file.path(data_dir, file))
-  }
-  
-  # unzip and prepare data hosted on AXDS's Mariculture server
-  if (grepl("mariculture", file)){
-    
-    # grab unique file name portion
-    new_dir_name <- unlist(strsplit(file, split=':', fixed=TRUE))[2]
-    
-    # create new directory for data
-    new_dir <- file.path(data_dir, new_dir_name)
-    
-    # unzip the file
-    unzip(zipfile = file.path(data_dir, file),
-          # export file to the new data directory
-          exdir = new_dir)
-    # remove original zipped file
-    file.remove(file.path(data_dir, file))
-  }
-  
-  # unzip and prepare data hosted on AXDS's NFWF server
-  if (grepl("nfwf", file)){
-    
-    # grab unique file name portion
-    new_dir_name <- unlist(strsplit(file, split=':', fixed=TRUE))[2]
-    
-    # create new directory for data
-    new_dir <- file.path(data_dir, new_dir_name)
-    
-    # unzip the file
-    unzip(zipfile = file.path(data_dir, file),
-          # export file to the new data directory
-          exdir = new_dir)
-    # remove original zipped file
-    file.remove(file.path(data_dir, file))
-  }
-  
-  # unzip and prepare data hosted on AXDS's Walrus server
-  if (grepl("walrus", file)){
+  # unzip and prepare data hosted on AXDS's servers
+  ## take the parts with "typeName" in the file and then get unique data name 
+  if (grepl("typeName", file)){
     
     # grab unique file name portion
     new_dir_name <- unlist(strsplit(file, split=':', fixed=TRUE))[2]
@@ -195,7 +145,7 @@ download_list <- c(
   
   "https://data.axds.co/gs/nfwf/wfs?service=WFS&version=1.0.0&request=GetFeature&outputFormat=SHAPE-ZIP&typeName=nfwf:ci_fiberoptic",
   "https://data.axds.co/gs/nfwf/wfs?service=WFS&version=1.0.0&request=GetFeature&outputFormat=SHAPE-ZIP&typeName=nfwf:ci_pipes",
- 
+  
   "https://data.axds.co/gs/walrus/wfs?service=WFS&version=1.0.0&request=GetFeature&outputFormat=SHAPE-ZIP&typeName=walrus:hauloutsdb_buffer_3338_4326",
   
   "https://data.axds.co/gs/mariculture/wfs?service=WFS&version=1.0.0&request=GetFeature&outputFormat=SHAPE-ZIP&typeName=mariculture:harbor_seal_haulouts_500m_buffer",
